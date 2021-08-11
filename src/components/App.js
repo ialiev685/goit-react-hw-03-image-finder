@@ -1,7 +1,9 @@
+import Searchbar from './Searchbar';
+
 const App = () => {
   return (
     <div>
-      <p>тест</p>
+      <Searchbar />
     </div>
   );
 };
