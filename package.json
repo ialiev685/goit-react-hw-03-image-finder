@@ -2,7 +2,7 @@
   "name": "goit-react-hw-01-components",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://ialiev685.github.io/название_проекта",
+  "homepage": "https://ialiev685.github.io/goit-react-hw-03-image-finder",
   "dependencies": {
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",

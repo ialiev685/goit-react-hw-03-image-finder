@@ -4,21 +4,27 @@ export default class Searchbar extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      serachName: '',
+      searchName: '',
     };
   }
 
   handleSubmit = e => {
     e.preventDefault();
 
-    // this.setState({ serachName: e.target.value });
+    this.props.onSubmit(this.state.searchName);
+
+    this.setState({ searchName: '' });
+  };
+
+  handleChange = e => {
+    this.setState({ searchName: e.target.value });
   };
 
   render() {
     return (
       <form onSubmit={this.handleSubmit}>
-        <input type="text" />
         <button type="submit">найти</button>
+        <input type="text" value={this.state.serachName} onChange={this.handleChange} />
       </form>
     );
   }
