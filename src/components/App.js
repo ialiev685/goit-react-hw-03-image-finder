@@ -2,7 +2,9 @@ import React, { Component } from 'react';
 
 import Searchbar from './Searchbar';
 
-import Loader from './Loader';
+import GetImages from './GetImages';
+
+// import Loader from './Loader';
 
 export default class App extends Component {
   constructor(props) {
@@ -23,7 +25,8 @@ export default class App extends Component {
     return (
       <div>
         <Searchbar onSubmit={this.hadleFormSubmit} />
-        <Loader query={query} />
+        <GetImages query={query} />
+        {/* <Loader query={query} /> */}
       </div>
     );
   }

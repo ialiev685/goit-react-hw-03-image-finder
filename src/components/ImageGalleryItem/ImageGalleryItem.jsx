@@ -1,7 +1,9 @@
+import './ImageGalleryItem.scss';
+
 const ImageGalleryItem = ({ smallImg, largeImg, tags }) => {
   return (
-    <li>
-      <img src={smallImg} data-large={largeImg} alt="" />
+    <li className="ImageGalleryItem">
+      <img className="ImageGalleryItem-image" src={smallImg} data-modal={largeImg} alt={tags} />
     </li>
   );
 };
