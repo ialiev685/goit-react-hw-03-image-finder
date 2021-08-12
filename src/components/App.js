@@ -4,6 +4,8 @@ import Searchbar from './Searchbar';
 
 import GetImages from './GetImages';
 
+import Header from './Header';
+
 // import Loader from './Loader';
 
 export default class App extends Component {
@@ -24,7 +26,10 @@ export default class App extends Component {
 
     return (
       <div>
-        <Searchbar onSubmit={this.hadleFormSubmit} />
+        <Header>
+          <Searchbar onSubmit={this.hadleFormSubmit} />
+        </Header>
+
         <GetImages query={query} />
         {/* <Loader query={query} /> */}
       </div>

@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 
 import API from '../../services';
-import ButtonLoadMore from '../ButtonLoadMore/ButtonLoadMore';
 
 import ImageGallery from '../ImageGallery';
+
+import Loader from 'react-loader-spinner';
 
 export default class GetImages extends Component {
   constructor(props) {
@@ -25,6 +26,8 @@ export default class GetImages extends Component {
   }
 
   fetchImages = () => {
+    this.setState({ status: 'padding' });
+
     const query = this.props.query;
     const currentPage = this.state.currentPage;
     const options = { currentPage, query };
@@ -34,6 +37,7 @@ export default class GetImages extends Component {
         this.setState(({ gallery, currentPage }) => ({
           gallery: [...gallery, ...resolved.hits],
           currentPage: currentPage + 1,
+          status: 'resolved',
         })),
       )
       .finally(() => {
@@ -45,13 +49,18 @@ export default class GetImages extends Component {
   };
 
   render() {
-    const { gallery } = this.state;
+    const { gallery, status } = this.state;
 
-    return (
-      <div>
-        <ImageGallery listGallery={gallery} />
-        {gallery.length > 0 ? <ButtonLoadMore onClick={this.fetchImages} /> : null}
-      </div>
-    );
+    if (status === 'waiting') {
+      return null;
+    }
+
+    if (status === 'resolved') {
+      return <ImageGallery listGallery={gallery} loadMore={this.fetchImages} />;
+    }
+
+    if (status === 'padding') {
+      return <Loader type="Oval" color="#00BFFF" height={100} width={100} />;
+    }
   }
 }
