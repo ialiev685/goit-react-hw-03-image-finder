@@ -19,7 +19,7 @@ export default class Searchbar extends Component {
   };
 
   handleChange = e => {
-    this.setState({ searchName: e.target.value });
+    this.setState({ searchName: e.target.value.trim() });
   };
 
   render() {
@@ -33,8 +33,8 @@ export default class Searchbar extends Component {
           type="text"
           value={this.state.serachName}
           onChange={this.handleChange}
-          autocomplete="off"
-          autofocusnn
+          autoComplete="off"
+          autoFocus
           placeholder="Search images and photos"
         />
       </form>

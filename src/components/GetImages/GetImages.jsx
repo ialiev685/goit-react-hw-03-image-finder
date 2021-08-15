@@ -8,12 +8,15 @@ import ButtonLoadMore from '../ButtonLoadMore/ButtonLoadMore';
 
 import Loader from '../Loader';
 
+import Error from '../Error';
+
 export default class GetImages extends Component {
   constructor(props) {
     super(props);
     this.state = {
       gallery: [],
       currentPage: 1,
+      error: null,
       status: 'waiting',
     };
   }
@@ -42,6 +45,7 @@ export default class GetImages extends Component {
           status: 'resolved',
         })),
       )
+      .catch(error => this.setState({ error, status: 'rejected' }))
       .finally(() => {
         window.scrollTo({
           top: document.documentElement.scrollHeight,
@@ -51,7 +55,7 @@ export default class GetImages extends Component {
   };
 
   render() {
-    const { gallery, status } = this.state;
+    const { gallery, status, error } = this.state;
 
     let button;
 
@@ -66,6 +70,7 @@ export default class GetImages extends Component {
         <ImageGallery listGallery={gallery} />
 
         {button}
+        {status === 'rejected' && <Error message={error.message} />}
       </>
     );
   }

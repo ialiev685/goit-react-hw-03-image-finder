@@ -1,5 +1,6 @@
 import ImageGalleryItem from '../ImageGalleryItem';
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 import Modal from '../Modal';
 
@@ -58,5 +59,9 @@ class ImageGallery extends Component {
     );
   }
 }
+
+ImageGallery.propTypes = {
+  listGallery: PropTypes.arrayOf(PropTypes.object),
+};
 
 export default ImageGallery;
