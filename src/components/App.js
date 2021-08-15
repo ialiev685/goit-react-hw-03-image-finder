@@ -6,7 +6,7 @@ import GetImages from './GetImages';
 
 import Header from './Header';
 
-// import Loader from './Loader';
+import Section from './Section';
 
 export default class App extends Component {
   constructor(props) {
@@ -25,14 +25,15 @@ export default class App extends Component {
     const { query } = this.state;
 
     return (
-      <div>
+      <>
         <Header>
           <Searchbar onSubmit={this.hadleFormSubmit} />
         </Header>
 
-        <GetImages query={query} />
-        {/* <Loader query={query} /> */}
-      </div>
+        <Section>
+          <GetImages query={query} />
+        </Section>
+      </>
     );
   }
 }

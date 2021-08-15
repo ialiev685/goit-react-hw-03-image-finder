@@ -3,8 +3,6 @@ import React, { Component } from 'react';
 
 import Modal from '../Modal';
 
-import ButtonLoadMore from '../ButtonLoadMore/ButtonLoadMore';
-
 import './ImageGallery.scss';
 
 class ImageGallery extends Component {
@@ -36,7 +34,7 @@ class ImageGallery extends Component {
   };
 
   render() {
-    const { listGallery, loadMore } = this.props;
+    const { listGallery } = this.props;
     const {
       dataModal: { src, alt },
       showModal,
@@ -54,7 +52,7 @@ class ImageGallery extends Component {
             />
           ))}
         </ul>
-        {listGallery.length > 0 && <ButtonLoadMore onClick={loadMore} />}
+
         {showModal && <Modal onClose={this.toggleModal} src={src} alt={alt} />}
       </>
     );

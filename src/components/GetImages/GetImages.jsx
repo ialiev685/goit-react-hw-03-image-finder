@@ -4,7 +4,9 @@ import API from '../../services';
 
 import ImageGallery from '../ImageGallery';
 
-import Loader from 'react-loader-spinner';
+import ButtonLoadMore from '../ButtonLoadMore/ButtonLoadMore';
+
+import Loader from '../Loader';
 
 export default class GetImages extends Component {
   constructor(props) {
@@ -51,16 +53,20 @@ export default class GetImages extends Component {
   render() {
     const { gallery, status } = this.state;
 
-    if (status === 'waiting') {
-      return null;
+    let button;
+
+    if (gallery.length > 0 && status === 'resolved') {
+      button = <ButtonLoadMore onClick={this.fetchImages} />;
+    } else if (status === 'padding') {
+      button = <Loader />;
     }
 
-    if (status === 'resolved') {
-      return <ImageGallery listGallery={gallery} loadMore={this.fetchImages} />;
-    }
+    return (
+      <>
+        <ImageGallery listGallery={gallery} />
 
-    if (status === 'padding') {
-      return <Loader type="Oval" color="#00BFFF" height={100} width={100} />;
-    }
+        {button}
+      </>
+    );
   }
 }
