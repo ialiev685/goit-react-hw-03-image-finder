@@ -27,7 +27,7 @@ export default class Modal extends Component {
   };
 
   render() {
-    const { src, alt } = this.props;
+    const { src, alt } = this.props.data;
     return createPortal(
       <div className="Overlay" onClick={this.handOverlayClick}>
         <div className="Modal">
